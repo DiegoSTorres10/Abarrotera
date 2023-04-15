@@ -1,0 +1,59 @@
+.navbar {
+    background-color: #336699;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .containerlogo {
+    display: flex;
+    align-items: center;
+  }
+  .logo {
+    color: #fff;
+    font-size: 24px;
+    text-decoration: none;
+    margin-right: 10px; /* añade un margen a la derecha del logo para separarlo del texto si es necesario */
+  }
+  
+  .nav-links {
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .nav-links li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 8px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .nav-links li a:hover {
+    background-color: #fff;
+    color: #336699;
+  }
+  
+
+  .vigente {
+    color: green;
+    font-style: italic;
+    font-weight: bold;
+  }
+  
+  .no-vigente {
+    color: red;
+    font-style: italic;
+    font-weight: bold;
+  }
+
+  .tablaHijos tr:nth-child(odd) {
+    background-color: #e0f2fe;
+  }
+  
+  .tablaHijos tr:nth-child(even) {
+    background-color: #eef2ff;
+  }

@@ -1,0 +1,30 @@
+h1{
+    font-family: inter;
+    font-size: 72px;
+    font-weight: 800;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    background-image: linear-gradient(90deg, blue, red);
+}
+
+.Alta_cli{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+tbody tr:nth-child(odd){
+    background-color: #dee2e6;
+}
+
+tbody tr:nth-child(even){
+    background-color: #dbeafe;
+}
+
+.img{
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    object-fit:cover;
+    background: #dfdfdf;
+}

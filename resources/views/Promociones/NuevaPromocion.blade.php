@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="{{asset('css/fixedHeader.dataTables.min.css')}}">
     <script src="{{asset('js/jquery-3.6.3.min.js')}}"></script>
     <script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
-    <script src="{{asset('js/dataTables.fixedHeader.minjs')}}"></script>
+    <script src="{{asset('js/dataTables.fixedHeader.min.js')}}"></script>
 
     <title> Nueva Promoción</title>
 
@@ -95,6 +95,8 @@
                         <a class="btn btn-danger me-md-2" href="{{route ('ReportePromociones')}}" type="button">Regresar</a>
                         <input type="button" value="Agregar Descuento"  class="btn btn-primary" id='AgregarDes' name='AgregarDes' disabled>
                     </div>
+
+
                     <!-- Carrito de los descuentos -->
                     <div id="Carrito_descuentos">
 

@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="{{asset('css/fixedHeader.dataTables.min.css')}}">
     <script src="{{asset('js/jquery-3.6.3.min.js')}}"></script>
     <script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
-    <script src="{{asset('js/dataTables.fixedHeader.minjs')}}"></script>
+    <script src="{{asset('js/dataTables.fixedHeader.min.js')}}"></script>
 
     <title> Modificación de promoción</title>
 

@@ -30,6 +30,7 @@
             <li><a href="{{ route('Categorias')}}">Categorias</a></li>
             <li><a href="{{ route('Vendedor')}}">Vendedores</a></li>
             <li><a href="{{ route('Proveedores')}}">Proveedores</a></li>
+            <li><a href="{{ route('ReportePromociones')}}">Promociones</a></li>
             <li><a href="{{ route('CerrarSesion')}}">Cerrar Sesión</a></li> 
             
         </ul>

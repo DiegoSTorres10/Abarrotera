@@ -51,7 +51,7 @@
 
         <a type="button"  href="{{ route('NuevaPromocion')}}" class="btn btn-success">Nueva Promoción</a>
 
-        <div class="table-responsive bg-light mt-4 ">
+        <div class="table-responsive bg-light mt-4 mb-5 ">
             <table class="tablaHijos text-center display" style="width:100%"  id="example" >
                 <thead class="btn-teal nav-bg text-black">
                     <tr>

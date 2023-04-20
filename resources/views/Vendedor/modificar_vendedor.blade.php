@@ -173,12 +173,4 @@
 </body>
 </html>
 
-@if (is_null(Session::get('sesiontipo')))
-    <script>
-        window.location = "{{ route('login') }}";
-    </script>
-@elseif (Session::get('sesiontipo')==2)
-    <script>
-        window.location = "{{ route('Clientes') }}";
-    </script>
-@else
+@endif

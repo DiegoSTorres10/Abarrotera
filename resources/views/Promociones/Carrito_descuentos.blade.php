@@ -54,12 +54,10 @@ $(function () {
 });
 
 $(function () {
-  $('.editar').click(
-    function () {
+  $('.editar').click(function () {
       formulario = this.form;
-      $("#Carrito_descuentos").load('{{url('Editar_promocion_carrito')}}' + '?' + $(this).closest('form').serialize()) ;
-    }
-  );
+      window.location.href = '{{url('Editar_promocion_carrito')}}?id_promocion=' + formulario.id_promocion.value;
+  });
 });
 
 $('#example thead tr')

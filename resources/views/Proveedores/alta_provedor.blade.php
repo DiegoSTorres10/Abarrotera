@@ -31,6 +31,22 @@
         window.location = "{{ route('Clientes') }}";
     </script>
 @else
+<<<<<<< HEAD
+=======
+    <nav class="navbar">
+        <div class="containerlogo">
+            <a href="#" class="logo">Abarrotes Huachi</a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="{{ route('Productos')}}">Productos</a></li>
+            <li><a href="{{ route('Categorias')}}">Categorias</a></li>
+            <li><a href="{{ route('Vendedor')}}">Vendedores</a></li>
+            <li><a href="{{ route('Proveedores')}}">Proveedores</a></li> 
+            <li><a href="{{ route('ReportePromociones')}}">Promociones</a></li>    
+            <li><a href="{{ route('CerrarSesion')}}">Cerrar Sesión</a></li>  
+        </ul>
+    </nav>
+>>>>>>> 908a928738227f7fe944ed5f6633c291d0bcfa03
 
     <div class="container">
         <h1 class="text-center titulos"> Alta de proveedores</h1>

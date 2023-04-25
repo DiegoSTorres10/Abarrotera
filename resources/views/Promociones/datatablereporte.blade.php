@@ -11,6 +11,7 @@
             <table class="tablaHijos text-center display" style="width:100%"  id="tabla_promociones" >
                 <thead class="btn-teal nav-bg text-black">
                     <tr>
+                        
                         <th scope="col">Clave del producto</th>
                         <th scope="col">Producto</th>
                         <th scope="col">Proveedor</th>

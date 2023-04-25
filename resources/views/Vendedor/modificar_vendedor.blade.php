@@ -167,8 +167,12 @@
 </html>
 @endif
 
+<<<<<<< HEAD
 @stop
 
 @section('css')
     <link rel="stylesheet" href="/css/admin_custom.css">
 @stop
+=======
+@endif
+>>>>>>> 908a928738227f7fe944ed5f6633c291d0bcfa03

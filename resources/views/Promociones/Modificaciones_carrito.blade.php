@@ -9,18 +9,19 @@
     <link href="{{asset('css/formulario.css')}}" rel="stylesheet" type="text/css"/>
     <link href="{{asset('css/menu.css')}}" rel="stylesheet" type="text/css"/>
     <script src="{{asset('js/bootstrap.min.js')}}"></script>
-    <script src="{{asset('js/jquery-3.6.3.min.js')}}"></script>
 
     <link rel="stylesheet" href="{{asset('css/jquery.dataTables.min.css')}}"> 
     <link rel="stylesheet" href="{{asset('css/fixedHeader.dataTables.min.css')}}">
     <script src="{{asset('js/jquery-3.6.3.min.js')}}"></script>
     <script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
-    <script src="{{asset('js/dataTables.fixedHeader.minjs')}}"></script>
+    <script src="{{asset('js/dataTables.fixedHeader.min.js')}}"></script>
 
     <title> Modificación de promoción</title>
 
 </head>
 <body>
+
+
 @if (is_null(Session::get('sesiontipo')))
     <script>
         window.location = "{{ route('login') }}";
@@ -30,26 +31,15 @@
         window.location = "{{ route('Clientes') }}";
     </script>
 @else
+    @extends('adminlte::page')
 
-<nav class="navbar">
-        <div class="containerlogo">
-            <a href="#" class="logo">Abarrotes Huachi</a>
-        </div>
-        <ul class="nav-links">
-            <li><a href="{{ route('Productos')}}">Productos</a></li>
-            <li><a href="{{ route('Categorias')}}">Categorias</a></li>
-            <li><a href="{{ route('Vendedor')}}">Vendedores</a></li>
-            <li><a href="{{ route('Proveedores')}}">Proveedores</a></li>
-            <li><a href="{{ route('Clientes')}}">Clientes</a></li>
-            <li><a href="{{ route('ReportePromociones')}}">Promociones</a></li>
-            <li><a href="{{ route('CerrarSesion')}}">Cerrar Sesión</a></li>       
-        </ul>
-    </nav>
+
+    @section('content')
 
     <main>
         <div class="container">
 
-            <h1 class="text-center"> Modificación de la promoción </h1>
+            <h1 class="text-center titulos"> Modificación de la promoción </h1>
             <form action="" method="" class="bg-fluid pb-3" enctype="multipart/form-data" autocomplete=off id="Foma" >
                 <div class="mb-3">
                     <label class="mt-3 mb-2 letraLabel" for="producto">Seleccione el producto:<span>*</span></label>
@@ -271,3 +261,6 @@
 </html>
 
 @endif
+
+
+@stop

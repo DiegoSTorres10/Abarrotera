@@ -23,21 +23,14 @@
         window.location = "{{ route('Clientes') }}";
     </script>
 @else
-<nav class="navbar">
-        <div class="containerlogo">
-            <a href="#" class="logo">Abarrotes Huachi</a>
-        </div>
-        <ul class="nav-links">
-            <li><a href="{{ route('Productos')}}">Productos</a></li>
-            <li><a href="{{ route('Categorias')}}">Categorias</a></li>
-            <li><a href="{{ route('Vendedor')}}">Vendedores</a></li>
-            <li><a href="{{ route('Proveedores')}}">Proveedores</a></li>    
-            <li><a href="{{ route('CerrarSesion')}}">Cerrar Sesión</a></li>   
-        </ul>
-    </nav>
+@extends('adminlte::page')
+
+@section('title', 'Dashboard')
+
+@section('content')
 
     <div class="container">
-        <h1 class="text-center"> Modificación de productos</h1>
+        <h1 class="text-center titulos"> Modificación de productos</h1>
         <hr>
 
         <form action="{{route('proceso_modificacion')}}" method="POST" class="bg-fluid pb-3" enctype="multipart/form-data" autocomplete=off id="Foma" >
@@ -59,7 +52,7 @@
                     <div class="mb-3">
                         <label class="form-label mt-3" for="foto">Foto del producto</label> <br>
                         <img id="imagen-seleccionada" src="{{asset('archivos/'.$productos->foto)}}" class="img" alt="">
-                        <input type="file" class="custom-file-input" id="foto" value="{{$productos->foto}}" name="foto" accept=".jpg,.png,.gif,.jpeg">
+                        <input type="file" class="" id="foto" value="{{$productos->foto}}" name="foto" accept=".jpg,.png,.gif,.jpeg">
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -137,3 +130,9 @@
 </body>
 </html>
 @endif
+
+@stop
+
+@section('css')
+    <link rel="stylesheet" href="/css/admin_custom.css">
+@stop

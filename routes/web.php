@@ -8,6 +8,7 @@ use App\Http\Controllers\ProveedoresController;
 use App\Http\Controllers\Productoscontroller;
 use App\Http\Controllers\AccesoController;
 use App\Http\Controllers\PromocionesController;
+use App\Http\Controllers\Inventariocontroller;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,4 +84,6 @@ Route::get('Carrito_descuentos_reajuste',[PromocionesController::class,'Carrito_
 Route::get('Editar_promocion_carrito',[PromocionesController::class, 'Editar_promocion_carrito'])->name('Editar_promocion_carrito');
 
 
+//Inventario
+Route::get('Inventario', [Inventariocontroller::class,'Inventario'])->name('Inventario');
 

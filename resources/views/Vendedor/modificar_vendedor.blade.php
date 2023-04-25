@@ -25,22 +25,15 @@
     </script>
 @else
 
+@extends('adminlte::page')
 
-    <nav class="navbar">
-        <div class="containerlogo">
-            <a href="#" class="logo">Abarrotes Huachi</a>
-        </div>
-        <ul class="nav-links">
-            <li><a href="{{ route('Productos')}}">Productos</a></li>
-            <li><a href="{{ route('Categorias')}}">Categorias</a></li>
-            <li><a href="{{ route('Vendedor')}}">Vendedores</a></li>
-            <li><a href="{{ route('Proveedores')}}">Proveedores</a></li>      
-            <li><a href="{{ route('CerrarSesion')}}">Cerrar Sesión</a></li> 
-        </ul>
-    </nav>
+@section('title', 'Dashboard')
+
+@section('content')
+
 
     <div class="container">
-        <h1 class="text-center"> Modificación de vendedores</h1>
+        <h1 class="text-center titulos"> Modificación de vendedores</h1>
         <hr>
 
 
@@ -172,13 +165,10 @@
     </script>
 </body>
 </html>
+@endif
 
-@if (is_null(Session::get('sesiontipo')))
-    <script>
-        window.location = "{{ route('login') }}";
-    </script>
-@elseif (Session::get('sesiontipo')==2)
-    <script>
-        window.location = "{{ route('Clientes') }}";
-    </script>
-@else
+@stop
+
+@section('css')
+    <link rel="stylesheet" href="/css/admin_custom.css">
+@stop

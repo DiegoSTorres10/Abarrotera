@@ -12,6 +12,12 @@
     <title>Proveedores</title>
 </head>
 <body>
+@extends('adminlte::page')
+
+@section('title', 'Dashboard')
+
+@section('content')
+
 @if (is_null(Session::get('sesiontipo')))
     <script>
         window.location = "{{ route('login') }}";
@@ -21,24 +27,12 @@
         window.location = "{{ route('Clientes') }}";
     </script>
 @else  
-    <nav class="navbar">
-        <div class="containerlogo">
-            <a href="#" class="logo">Abarrotes Huachi</a>
-        </div>
-        <ul class="nav-links">
-            <li><a href="{{ route('Productos')}}">Productos</a></li>
-            <li><a href="{{ route('Categorias')}}">Categorias</a></li>
-            <li><a href="{{ route('Vendedor')}}">Vendedores</a></li>
-            <li><a href="{{ route('Proveedores')}}">Proveedores</a></li>
-            <li><a href="{{ route('CerrarSesion')}}">Cerrar Sesión</a></li> 
-            
-        </ul>
-    </nav>
+    
 
     <div class="container">
 
     
-    <h1 class="text-center"> Bienvenido al control de los proveedores</h1>
+    <h1 class="text-center titulos"> Bienvenido al control de los proveedores</h1>
     @if (Session::has('mensaje'))
         <div class="alert alert-success font-italic" role="alert">
             {{ Session::get('mensaje')}}
@@ -52,8 +46,6 @@
             {{ Session::get('modificacion')}}
         </div>
     @endif
-
-        <p>Si desea agregar un nuevo proveedor haga click en el siguiente botón</p>
         <a type="button"  href="{{ route('Alta_Proveedor')}}" class="btn btn-success">Alta Proveedor</a>
 
         <div class="table-responsive bg-light mt-4 ">
@@ -86,3 +78,10 @@
 </html>
 
 @endif
+
+
+@stop
+
+@section('css')
+    <link rel="stylesheet" href="/css/admin_custom.css">
+@stop

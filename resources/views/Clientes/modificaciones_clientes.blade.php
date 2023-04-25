@@ -14,6 +14,12 @@
     <title>Modificación cliente</title>
 </head>
 <body>
+@extends('adminlte::page')
+
+@section('title', 'Dashboard')
+
+@section('content')
+
 @if (is_null(Session::get('sesiontipo')))
     <script>
         window.location = "{{ route('login') }}";
@@ -24,18 +30,9 @@
     </script>
 @else
 
-    <nav class="navbar">
-        <div class="containerlogo">
-        <a href="#" class="logo">Abarrotes Huachi</a>
-        </div>
-        <ul class="nav-links">
-            <li><a href="{{ route('Clientes')}}">Clientes</a></li>
-            <li><a href="{{ route('CerrarSesion')}}">Cerrar sesión</a></li>
-        </ul>
-    </nav>
 
     <div class="container">
-        <h1 class="text-center"> Modificación de clientes</h1>
+        <h1 class="text-center titulos"> Modificación de clientes</h1>
 
         <hr>
 
@@ -113,3 +110,9 @@
 </html>
 
 @endif
+
+@stop
+
+@section('css')
+    <link rel="stylesheet" href="/css/admin_custom.css">
+@stop

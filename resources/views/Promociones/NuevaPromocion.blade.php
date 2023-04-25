@@ -15,12 +15,19 @@
     <link rel="stylesheet" href="{{asset('css/fixedHeader.dataTables.min.css')}}">
     <script src="{{asset('js/jquery-3.6.3.min.js')}}"></script>
     <script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
-    <script src="{{asset('js/dataTables.fixedHeader.minjs')}}"></script>
+    <script src="{{asset('js/dataTables.fixedHeader.min.js')}}"></script>
 
     <title> Nueva Promoción</title>
 
 </head>
 <body>
+
+@extends('adminlte::page')
+
+@section('title', 'Dashboard')
+
+@section('content')
+
 @if (is_null(Session::get('sesiontipo')))
     <script>
         window.location = "{{ route('login') }}";
@@ -31,25 +38,12 @@
     </script>
 @else
 
-<nav class="navbar">
-        <div class="containerlogo">
-            <a href="#" class="logo">Abarrotes Huachi</a>
-        </div>
-        <ul class="nav-links">
-            <li><a href="{{ route('Productos')}}">Productos</a></li>
-            <li><a href="{{ route('Categorias')}}">Categorias</a></li>
-            <li><a href="{{ route('Vendedor')}}">Vendedores</a></li>
-            <li><a href="{{ route('Proveedores')}}">Proveedores</a></li>
-            <li><a href="{{ route('Clientes')}}">Clientes</a></li>
-            <li><a href="{{ route('ReportePromociones')}}">Promociones</a></li>
-            <li><a href="{{ route('CerrarSesion')}}">Cerrar Sesión</a></li>       
-        </ul>
-    </nav>
+
 
     <main>
         <div class="container">
 
-            <h1 class="text-center"> Nueva promoción </h1>
+            <h1 class="text-center titulos"> Nueva promoción </h1>
             <form action="" method="" class="bg-fluid pb-3" enctype="multipart/form-data" autocomplete=off id="Foma" >
                 <div class="mb-3">
                     <label class="mt-3 mb-2 letraLabel" for="producto">Seleccione el producto:<span>*</span></label>
@@ -95,6 +89,8 @@
                         <a class="btn btn-danger me-md-2" href="{{route ('ReportePromociones')}}" type="button">Regresar</a>
                         <input type="button" value="Agregar Descuento"  class="btn btn-primary" id='AgregarDes' name='AgregarDes' disabled>
                     </div>
+
+
                     <!-- Carrito de los descuentos -->
                     <div id="Carrito_descuentos">
 
@@ -230,3 +226,10 @@
 </html>
 
 @endif
+
+
+@stop
+
+@section('css')
+    <link rel="stylesheet" href="/css/admin_custom.css">
+@stop

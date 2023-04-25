@@ -11,6 +11,14 @@
     <title>Productos</title>
 </head>
 <body>
+
+@extends('adminlte::page')
+
+@section('title', 'Dashboard')
+
+@section('content')
+
+
 @if (is_null(Session::get('sesiontipo')))
     <script>
         window.location = "{{ route('login') }}";
@@ -20,24 +28,12 @@
         window.location = "{{ route('Clientes') }}";
     </script>
 @else
-<nav class="navbar">
-        <div class="containerlogo">
-            <a href="#" class="logo">Abarrotes Huachi</a>
-        </div>
-        <ul class="nav-links">
-            <li><a href="{{ route('Productos')}}">Productos</a></li>
-            <li><a href="{{ route('Categorias')}}">Categorias</a></li>
-            <li><a href="{{ route('Vendedor')}}">Vendedores</a></li>
-            <li><a href="{{ route('Proveedores')}}">Proveedores</a></li>
-            <li><a href="{{ route('Clientes')}}">Clientes</a></li>
-            <li><a href="{{ route('CerrarSesion')}}">Cerrar Sesión</a></li>       
-        </ul>
-    </nav>
+
 
     <div class="container">
 
     
-    <h1 class="text-center"> Productos</h1>
+    <h1 class="text-center titulos"> Bienvenido a los productos</h1>
     @if (Session::has('mensaje'))
         <div class="alert alert-success font-italic" role="alert">
             {{ Session::get('mensaje')}}
@@ -95,3 +91,9 @@
 </html>
 
 @endif
+
+@stop
+
+@section('css')
+    <link rel="stylesheet" href="/css/admin_custom.css">
+@stop

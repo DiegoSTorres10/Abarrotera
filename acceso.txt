@@ -1,0 +1,5 @@
+Para poder tener accceso existen dos roles:
+	1.- Administrador-> este tiene acceso a todo excepto clientes, para poder acceder es: Admin123 con su contraseña Admin123
+	2.- Vendedores -> Este tiene acceso a unicamente a clientes para poder acceder es: Diego22 con su contraseña Diego22
+
+Para insertar la BD, existe un documento en la carpeta principál llamada DB_Abarrotera, en el cual solo debes meter y crear la BD Abarrotes y hacer las confguraciones para las contraseñas de mysql

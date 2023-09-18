@@ -1,0 +1,484 @@
+-- MySQL dump 10.13  Distrib 8.0.34, for Linux (x86_64)
+--
+-- Host: localhost    Database: Abarrotes
+-- ------------------------------------------------------
+-- Server version	8.0.34-0ubuntu0.20.04.1
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `categorias`
+--
+
+DROP TABLE IF EXISTS `categorias`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `categorias` (
+  `id_categoria` int unsigned NOT NULL AUTO_INCREMENT,
+  `nombre_categoria` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id_categoria`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `categorias`
+--
+
+LOCK TABLES `categorias` WRITE;
+/*!40000 ALTER TABLE `categorias` DISABLE KEYS */;
+INSERT INTO `categorias` VALUES (1,'Productos enlatados',NULL,NULL,NULL),(2,'Lácteos',NULL,NULL,NULL),(4,'Frutas y verduras',NULL,NULL,NULL),(5,'Bebidas',NULL,NULL,NULL),(6,'Alimentos preparados',NULL,NULL,NULL),(7,'Higiene personal',NULL,NULL,NULL),(8,'Uso doméstico',NULL,NULL,NULL),(9,'Jarceria',NULL,NULL,NULL),(16,'Harina y pan',NULL,'2023-04-13 02:56:16','2023-04-13 02:56:16'),(17,'Aceites',NULL,'2023-04-13 11:34:41','2023-04-13 11:34:41'),(19,'Botanas',NULL,'2023-04-13 11:35:54','2023-04-13 11:35:54'),(20,'Bebidas alcohólicas',NULL,'2023-04-13 11:36:27','2023-04-13 11:36:27'),(21,'Medicamentos',NULL,'2023-04-13 11:36:36','2023-04-13 11:36:36');
+/*!40000 ALTER TABLE `categorias` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `clientes`
+--
+
+DROP TABLE IF EXISTS `clientes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `clientes` (
+  `id_cliente` int unsigned NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `apellido_p` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `apellido_m` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fecha_nacimiento` date NOT NULL,
+  `sexo` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id_cliente`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `clientes`
+--
+
+LOCK TABLES `clientes` WRITE;
+/*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
+INSERT INTO `clientes` VALUES (2,'Ivone Sherlyn','meza','suarez','2023-04-13','Femenino',NULL,'2023-04-11 09:23:26','2023-04-11 09:23:26',NULL);
+/*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `det_ventas`
+--
+
+DROP TABLE IF EXISTS `det_ventas`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `det_ventas` (
+  `id_detventas` int unsigned NOT NULL AUTO_INCREMENT,
+  `id_venta` int unsigned NOT NULL,
+  `id_producto` int unsigned NOT NULL,
+  `cantidad` int unsigned NOT NULL,
+  `costo` double NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id_detventas`),
+  KEY `det_ventas_id_venta_foreign` (`id_venta`),
+  KEY `det_ventas_id_producto_foreign` (`id_producto`),
+  CONSTRAINT `det_ventas_id_producto_foreign` FOREIGN KEY (`id_producto`) REFERENCES `productos` (`id_producto`),
+  CONSTRAINT `det_ventas_id_venta_foreign` FOREIGN KEY (`id_venta`) REFERENCES `ventas` (`id_venta`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `det_ventas`
+--
+
+LOCK TABLES `det_ventas` WRITE;
+/*!40000 ALTER TABLE `det_ventas` DISABLE KEYS */;
+/*!40000 ALTER TABLE `det_ventas` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `estados`
+--
+
+DROP TABLE IF EXISTS `estados`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `estados` (
+  `id_estado` int unsigned NOT NULL AUTO_INCREMENT,
+  `nombre_estado` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id_estado`)
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `estados`
+--
+
+LOCK TABLES `estados` WRITE;
+/*!40000 ALTER TABLE `estados` DISABLE KEYS */;
+INSERT INTO `estados` VALUES (1,'Aguascalientes',NULL,NULL,NULL),(2,'Baja California',NULL,NULL,NULL),(3,'Baja California Sur',NULL,NULL,NULL),(4,'Campeche',NULL,NULL,NULL),(5,'Chiapas',NULL,NULL,NULL),(6,'Chihuahua',NULL,NULL,NULL),(7,'Ciudad de México',NULL,NULL,NULL),(8,'Coahuila',NULL,NULL,NULL),(9,'Colima',NULL,NULL,NULL),(10,'Estado de México',NULL,NULL,NULL),(11,'Durango',NULL,NULL,NULL),(12,'Guanajuato',NULL,NULL,NULL),(13,'Guerrero',NULL,NULL,NULL),(14,'Hidalgo',NULL,NULL,NULL),(15,'Jalisco',NULL,NULL,NULL),(16,'Michoacán',NULL,NULL,NULL),(17,'Morelos',NULL,NULL,NULL),(18,'Nayarit',NULL,NULL,NULL),(19,'Nuevo León',NULL,NULL,NULL),(20,'Oaxaca',NULL,NULL,NULL),(21,'Puebla',NULL,NULL,NULL),(22,'Querétaro',NULL,NULL,NULL),(23,'Quintana Roo',NULL,NULL,NULL),(24,'San Luis Potosí',NULL,NULL,NULL),(25,'Sinaloa',NULL,NULL,NULL),(26,'Sonora',NULL,NULL,NULL),(27,'Tabasco',NULL,NULL,NULL),(28,'Tamaulipas',NULL,NULL,NULL),(29,'Tlaxcala',NULL,NULL,NULL),(30,'Veracruz',NULL,NULL,NULL),(31,'Yucatán',NULL,NULL,NULL),(32,'Zacatecas',NULL,NULL,NULL);
+/*!40000 ALTER TABLE `estados` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `failed_jobs`
+--
+
+DROP TABLE IF EXISTS `failed_jobs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `failed_jobs` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `failed_jobs`
+--
+
+LOCK TABLES `failed_jobs` WRITE;
+/*!40000 ALTER TABLE `failed_jobs` DISABLE KEYS */;
+/*!40000 ALTER TABLE `failed_jobs` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `migrations`
+--
+
+DROP TABLE IF EXISTS `migrations`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `migrations` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `migrations`
+--
+
+LOCK TABLES `migrations` WRITE;
+/*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
+INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_users_table',1),(2,'2014_10_12_100000_create_password_resets_table',1),(3,'2019_08_19_000000_create_failed_jobs_table',1),(4,'2019_12_14_000001_create_personal_access_tokens_table',1),(5,'2023_02_12_003701_usuarios',1),(6,'2023_02_12_003727_estados',1),(7,'2023_02_12_003832_vendedores',1),(8,'2023_02_12_003907_provedores',1),(9,'2023_02_12_003944_clientes',1),(10,'2023_02_12_004006_categorias',1),(11,'2023_02_12_004027_ventas',1),(12,'2023_02_12_004056_productos',1),(13,'2023_02_12_004120_det_ventas',1);
+/*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `password_resets`
+--
+
+DROP TABLE IF EXISTS `password_resets`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `password_resets` (
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `password_resets`
+--
+
+LOCK TABLES `password_resets` WRITE;
+/*!40000 ALTER TABLE `password_resets` DISABLE KEYS */;
+/*!40000 ALTER TABLE `password_resets` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `personal_access_tokens`
+--
+
+DROP TABLE IF EXISTS `personal_access_tokens`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `personal_access_tokens` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tokenable_id` bigint unsigned NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `abilities` text COLLATE utf8mb4_unicode_ci,
+  `last_used_at` timestamp NULL DEFAULT NULL,
+  `expires_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
+  KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `personal_access_tokens`
+--
+
+LOCK TABLES `personal_access_tokens` WRITE;
+/*!40000 ALTER TABLE `personal_access_tokens` DISABLE KEYS */;
+/*!40000 ALTER TABLE `personal_access_tokens` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `productos`
+--
+
+DROP TABLE IF EXISTS `productos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `productos` (
+  `id_producto` int unsigned NOT NULL AUTO_INCREMENT,
+  `id_provedores` int unsigned NOT NULL,
+  `id_categoria` int unsigned NOT NULL,
+  `nombre_producto` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `descripcion` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `cantidad` int unsigned NOT NULL,
+  `costo` double NOT NULL,
+  `foto` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id_producto`),
+  KEY `productos_id_provedores_foreign` (`id_provedores`),
+  KEY `productos_id_categoria_foreign` (`id_categoria`),
+  CONSTRAINT `productos_id_categoria_foreign` FOREIGN KEY (`id_categoria`) REFERENCES `categorias` (`id_categoria`),
+  CONSTRAINT `productos_id_provedores_foreign` FOREIGN KEY (`id_provedores`) REFERENCES `provedores` (`id_provedores`)
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `productos`
+--
+
+LOCK TABLES `productos` WRITE;
+/*!40000 ALTER TABLE `productos` DISABLE KEYS */;
+INSERT INTO `productos` VALUES (2,19,9,'Pinol','Pinol 3 lts',6,70,'SinFoto.jpg',NULL,'2023-04-13 02:51:56','2023-04-20 23:37:23'),(5,25,17,'Aceite Nutrioli','Aceite Nutrioli de un litro',60,26.24,'20230413_054138_nutrioli.png',NULL,'2023-04-13 11:41:38','2023-05-05 00:48:41'),(6,7,6,'Nescafe','Nescafe de sobre de 250 gramos',40,64.8,'20230413_054303_NescafeSObre.jpeg',NULL,'2023-04-13 11:43:03','2023-04-20 10:03:10'),(7,25,6,'Azúcar','Bulto de azucar de 15 kilos',6,180,'SinFoto.jpg',NULL,'2023-04-13 11:43:57','2023-04-15 07:28:10'),(8,26,6,'Zucaritas','Zucaritas de 850 gramos',15,68,'20230413_054547_Zucaritas.jpeg',NULL,'2023-04-13 11:45:47','2023-04-15 07:28:19'),(9,19,1,'Atún','Atun de aceite',80,21,'20230413_054703_atun.jpeg',NULL,'2023-04-13 11:47:03','2023-04-15 07:28:26'),(10,19,1,'Frijoles bayos','Frijoles refirtos',23,26,'20230413_054816_FrijolesBayos.jpeg',NULL,'2023-04-13 11:48:16','2023-04-15 07:28:33'),(11,7,2,'Leche condensada','Leche condensada de 500 mililitros',40,17,'20230413_054934_lecheCondesanda.jpeg',NULL,'2023-04-13 11:49:34','2023-04-15 07:28:39'),(12,27,2,'Nutrileche de 1 litros','Nutrileche de 1 litros',45,19.8,'20230413_055207_nutrileche.png',NULL,'2023-04-13 11:52:07','2023-04-15 05:50:37'),(13,6,5,'Fanta de Naranja','Fanta de naranja de 3 ltrs.',40,28.51,'20230413_055540_fanta.jpeg',NULL,'2023-04-13 11:55:40','2023-04-16 03:15:21'),(14,6,5,'Sidral','Sidral de 600 ml',50,9.9,'SinFoto.jpg',NULL,'2023-04-13 11:56:14','2023-04-15 05:53:41'),(15,25,7,'shampoo head and shoulder 750 ml','shampoo head and shoulder 750 ml',50,72.09,'20230413_055738_shampooheadndshoulder.jpeg',NULL,'2023-04-13 11:57:38','2023-04-15 06:40:31'),(16,16,7,'Roma','Roma 3 litros',12,45,'20230413_055839_roma.jpg',NULL,'2023-04-13 11:58:39','2023-04-15 06:44:08'),(17,26,9,'Escobeta','Escobeta',60,21,'SinFoto.jpg',NULL,'2023-04-13 11:59:36','2023-04-13 11:59:36'),(18,20,9,'Cepillo yarda','Cepillo yarda para barrera',32,25,'20230413_060050_Cepillo yarda .jpeg',NULL,'2023-04-13 12:00:50','2023-04-13 12:00:50'),(19,12,17,'Aceite capullo 1 litro','Aceite capullo 1 litro',12,49.5,'20230413_060202_Aceite capullo 1 litro.jpeg',NULL,'2023-04-13 12:02:02','2023-04-15 06:39:44'),(20,29,20,'Six Heineken de 750 mililitros','Six de cerveza Heineken de 750 mililitros',30,108,'20230413_061111_Cerveza Heineken de 750 mililitrosSix.png',NULL,'2023-04-13 12:11:11','2023-04-15 06:47:11'),(21,30,20,'Six de coronitas de 250 mililitros','Six de coronitas de 250 mililitros',200,63,'20230413_061225_Coronita.jpeg',NULL,'2023-04-13 12:12:25','2023-04-15 06:37:35'),(23,17,21,'Pepto Bismo jarabe 250 mililitros','Pepto Bismo jarabe 250 mililitros',0,50,'20230414_030541_peptbismol.png',NULL,'2023-04-14 09:05:41','2023-04-14 09:05:41'),(24,10,6,'Jamon VIVA','Jamon VIVA',15,135,'20230414_201542_images.jpeg',NULL,'2023-04-15 02:15:42','2023-04-15 05:47:48'),(25,2,2,'Prueba','Prueba',3,82,'SinFoto.jpg',NULL,'2023-04-20 08:25:01','2023-04-20 08:25:01');
+/*!40000 ALTER TABLE `productos` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `promociones`
+--
+
+DROP TABLE IF EXISTS `promociones`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `promociones` (
+  `id_promocion` int NOT NULL AUTO_INCREMENT,
+  `id_producto` int unsigned NOT NULL,
+  `porcentaje_aumento` double NOT NULL,
+  `precio_antiguo` double DEFAULT NULL,
+  `fecha_finalizacion` date DEFAULT NULL,
+  `estatus` tinyint(1) DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id_promocion`),
+  KEY `id_producto` (`id_producto`),
+  CONSTRAINT `promociones_ibfk_1` FOREIGN KEY (`id_producto`) REFERENCES `productos` (`id_producto`)
+) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `promociones`
+--
+
+LOCK TABLES `promociones` WRITE;
+/*!40000 ALTER TABLE `promociones` DISABLE KEYS */;
+INSERT INTO `promociones` VALUES (26,2,10,150,'2023-04-13',0,NULL,NULL,NULL),(42,2,10,100,'2023-04-14',0,'2023-04-15 08:26:12','2023-04-15 23:00:50',NULL),(57,6,10,64.8,'2023-04-15',0,'2023-04-16 03:41:28','2023-04-18 20:39:07',NULL),(59,2,50,50,'2023-04-15',0,'2023-04-16 04:04:46','2023-04-18 20:39:07',NULL),(61,2,30,100,'2023-04-22',1,'2023-04-18 20:50:35','2023-04-20 23:37:23',NULL),(64,5,10,45,'2023-04-19',1,'2023-04-18 21:36:57','2023-04-18 21:36:57',NULL),(65,6,10,72,'2023-04-20',1,'2023-04-20 10:03:10','2023-04-20 10:03:10',NULL),(67,5,20,40.5,'2023-04-21',1,'2023-04-20 23:36:44','2023-04-20 23:36:44',NULL),(68,5,10,32.4,'2023-04-30',1,'2023-04-30 06:56:11','2023-04-30 06:56:11',NULL),(69,5,10,29.16,'2023-05-19',1,'2023-05-05 00:48:41','2023-05-05 00:48:41',NULL);
+/*!40000 ALTER TABLE `promociones` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `provedores`
+--
+
+DROP TABLE IF EXISTS `provedores`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `provedores` (
+  `id_provedores` int unsigned NOT NULL AUTO_INCREMENT,
+  `nombre_empresa` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id_provedores`)
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `provedores`
+--
+
+LOCK TABLES `provedores` WRITE;
+/*!40000 ALTER TABLE `provedores` DISABLE KEYS */;
+INSERT INTO `provedores` VALUES (1,'La corona',NULL,NULL,NULL),(2,'Alpura',NULL,NULL,NULL),(3,'Refrigeracion y congelacion SA de CV',NULL,NULL,NULL),(4,'Galleta canina',NULL,NULL,NULL),(5,'LALA',NULL,NULL,NULL),(6,'Coca-cola',NULL,NULL,NULL),(7,'Nestle',NULL,NULL,NULL),(8,'SuKarne',NULL,NULL,NULL),(9,'La fina',NULL,NULL,NULL),(10,'FUD',NULL,NULL,NULL),(11,'La moderna',NULL,NULL,NULL),(12,'RicoPollo',NULL,NULL,NULL),(13,'LM comercializadora de frijol',NULL,NULL,NULL),(14,'Danone',NULL,NULL,NULL),(15,'Bimbo',NULL,NULL,NULL),(16,'La rosa',NULL,NULL,NULL),(17,'Huevo blanco el Calvario',NULL,NULL,NULL),(18,'Kimberly-Clarl',NULL,NULL,NULL),(19,'La costeña',NULL,NULL,NULL),(20,'Torvel',NULL,NULL,NULL),(21,'Fruver',NULL,NULL,NULL),(25,'Ragasa',NULL,'2023-04-13 11:40:24','2023-04-13 11:40:24'),(26,'The kellog Company',NULL,'2023-04-13 11:44:47','2023-04-13 11:44:47'),(27,'Nutri',NULL,'2023-04-13 11:51:34','2023-04-13 11:51:34'),(28,'Sabritas',NULL,'2023-04-13 12:07:05','2023-04-13 12:07:05'),(29,'Heineken',NULL,'2023-04-13 12:09:18','2023-04-13 12:09:18'),(30,'Corona',NULL,'2023-04-13 12:09:25','2023-04-13 12:09:25');
+/*!40000 ALTER TABLE `provedores` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `users` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email_verified_at` timestamp NULL DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `users_email_unique` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `usuarios`
+--
+
+DROP TABLE IF EXISTS `usuarios`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `usuarios` (
+  `id_usuario` int NOT NULL AUTO_INCREMENT,
+  `usuario` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `nombre_completo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `rol` int NOT NULL COMMENT '1- Administrador, 2- Secretaria',
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id_usuario`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `usuarios`
+--
+
+LOCK TABLES `usuarios` WRITE;
+/*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
+INSERT INTO `usuarios` VALUES (5,'Diego22','Diego Sanchez Torres','$2y$10$M/gRDj/5RsfkB3YioxLi/eTX/fjkD7CVlLJajuV11KCNACU8z9Em6',2,NULL,'2023-04-13 00:12:14','2023-04-13 00:12:14'),(6,'Daniel23','Daniel Sanchez Torres','$2y$10$C4Lm9FZv3R/t98h/WZYaxefqg93GGpUsjvqrCe4ka4GeTnYxem.2W',2,NULL,'2023-04-13 00:15:13','2023-04-13 00:15:13'),(7,'Admin123','Admin123','$2y$10$xeXWYU.hJtkUp1JppbxwVOclqDbMWixKIkl3KL6WhDxk0kPO96GFu',1,NULL,'2023-04-13 06:38:31','2023-04-13 06:38:31');
+/*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `vendedores`
+--
+
+DROP TABLE IF EXISTS `vendedores`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `vendedores` (
+  `id_vendedor` int unsigned NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `apellido_p` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `apellido_m` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `domicilio` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ciudad` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id_estado` int unsigned NOT NULL,
+  `curp` varchar(18) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fecha_nacimiento` date NOT NULL,
+  `sexo` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id_vendedor`),
+  KEY `vendedores_id_estado_foreign` (`id_estado`),
+  CONSTRAINT `vendedores_id_estado_foreign` FOREIGN KEY (`id_estado`) REFERENCES `estados` (`id_estado`)
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `vendedores`
+--
+
+LOCK TABLES `vendedores` WRITE;
+/*!40000 ALTER TABLE `vendedores` DISABLE KEYS */;
+INSERT INTO `vendedores` VALUES (22,'Diego','Sanchez','Torres','Expropiaicon petrolera','San martin texmelucan',21,'SATD991113HPLNRG01','1999-11-13','Masculino',NULL,'2023-04-13 00:12:14','2023-04-13 00:12:14'),(23,'Daniel','Sanchez','Torres','San Martin','Puebla',21,'SATD991113HPLNRG06','1992-10-11','Masculino',NULL,'2023-04-13 00:15:13','2023-04-13 00:15:13');
+/*!40000 ALTER TABLE `vendedores` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ventas`
+--
+
+DROP TABLE IF EXISTS `ventas`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ventas` (
+  `id_venta` int unsigned NOT NULL AUTO_INCREMENT,
+  `id_vendedor` int unsigned NOT NULL,
+  `id_cliente` int unsigned NOT NULL,
+  `fecha` date NOT NULL,
+  `monto_pagar` double NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id_venta`),
+  KEY `ventas_id_vendedor_foreign` (`id_vendedor`),
+  KEY `ventas_id_cliente_foreign` (`id_cliente`),
+  CONSTRAINT `ventas_id_cliente_foreign` FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`id_cliente`),
+  CONSTRAINT `ventas_id_vendedor_foreign` FOREIGN KEY (`id_vendedor`) REFERENCES `vendedores` (`id_vendedor`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ventas`
+--
+
+LOCK TABLES `ventas` WRITE;
+/*!40000 ALTER TABLE `ventas` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ventas` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2023-09-18 14:13:39
